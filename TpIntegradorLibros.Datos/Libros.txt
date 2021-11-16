@@ -1,0 +1,9 @@
+﻿Amnesia|5|3|30|300|1245784125634|Axat
+Emboscada|6|4|220|2458752145986|Robertson
+Frankenstein|5|2|410|3562485795214| Shelley
+Hamlet|1|0|304|2451245875968|Shakespeare
+Heidi|3|2|210|4587541265892|Spyri
+Marina|2|4|457|5412698578425|Zafón
+Mujercitas|1|1|564|2457896325412|Alcott
+Rayuela|4|1|908|2145214785963|Cortazar
+Patria|0|0|142|2451247896325|Aramburu
