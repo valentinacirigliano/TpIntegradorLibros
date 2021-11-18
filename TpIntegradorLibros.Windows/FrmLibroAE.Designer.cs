@@ -29,6 +29,7 @@ namespace TpIntegradorLibros.Windows
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,13 +44,15 @@ namespace TpIntegradorLibros.Windows
             this.CancelButton = new System.Windows.Forms.Button();
             this.OKbutton = new System.Windows.Forms.Button();
             this.ISBNtb = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PaginasNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 53);
+            this.label1.Location = new System.Drawing.Point(37, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 13);
             this.label1.TabIndex = 0;
@@ -58,7 +61,7 @@ namespace TpIntegradorLibros.Windows
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 91);
+            this.label2.Location = new System.Drawing.Point(37, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 1;
@@ -67,7 +70,7 @@ namespace TpIntegradorLibros.Windows
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 130);
+            this.label3.Location = new System.Drawing.Point(37, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 2;
@@ -76,7 +79,7 @@ namespace TpIntegradorLibros.Windows
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 169);
+            this.label4.Location = new System.Drawing.Point(37, 141);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 3;
@@ -85,7 +88,7 @@ namespace TpIntegradorLibros.Windows
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 209);
+            this.label5.Location = new System.Drawing.Point(37, 181);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 4;
@@ -94,7 +97,7 @@ namespace TpIntegradorLibros.Windows
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 252);
+            this.label6.Location = new System.Drawing.Point(37, 224);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 5;
@@ -102,37 +105,39 @@ namespace TpIntegradorLibros.Windows
             // 
             // NombreLibroTB
             // 
-            this.NombreLibroTB.Location = new System.Drawing.Point(135, 50);
+            this.NombreLibroTB.Location = new System.Drawing.Point(140, 22);
             this.NombreLibroTB.Name = "NombreLibroTB";
             this.NombreLibroTB.Size = new System.Drawing.Size(237, 20);
-            this.NombreLibroTB.TabIndex = 6;
+            this.NombreLibroTB.TabIndex = 0;
             // 
             // AutorTB
             // 
-            this.AutorTB.Location = new System.Drawing.Point(135, 249);
+            this.AutorTB.Location = new System.Drawing.Point(140, 221);
             this.AutorTB.Name = "AutorTB";
             this.AutorTB.Size = new System.Drawing.Size(237, 20);
-            this.AutorTB.TabIndex = 6;
+            this.AutorTB.TabIndex = 5;
             // 
             // EditorialCB
             // 
+            this.EditorialCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EditorialCB.FormattingEnabled = true;
-            this.EditorialCB.Location = new System.Drawing.Point(135, 88);
+            this.EditorialCB.Location = new System.Drawing.Point(140, 60);
             this.EditorialCB.Name = "EditorialCB";
             this.EditorialCB.Size = new System.Drawing.Size(237, 21);
-            this.EditorialCB.TabIndex = 7;
+            this.EditorialCB.TabIndex = 1;
             // 
             // TemaCB
             // 
+            this.TemaCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TemaCB.FormattingEnabled = true;
-            this.TemaCB.Location = new System.Drawing.Point(135, 127);
+            this.TemaCB.Location = new System.Drawing.Point(140, 99);
             this.TemaCB.Name = "TemaCB";
             this.TemaCB.Size = new System.Drawing.Size(237, 21);
-            this.TemaCB.TabIndex = 7;
+            this.TemaCB.TabIndex = 2;
             // 
             // PaginasNum
             // 
-            this.PaginasNum.Location = new System.Drawing.Point(135, 167);
+            this.PaginasNum.Location = new System.Drawing.Point(140, 139);
             this.PaginasNum.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -145,7 +150,7 @@ namespace TpIntegradorLibros.Windows
             0});
             this.PaginasNum.Name = "PaginasNum";
             this.PaginasNum.Size = new System.Drawing.Size(54, 20);
-            this.PaginasNum.TabIndex = 8;
+            this.PaginasNum.TabIndex = 3;
             this.PaginasNum.Value = new decimal(new int[] {
             1,
             0,
@@ -155,10 +160,10 @@ namespace TpIntegradorLibros.Windows
             // CancelButton
             // 
             this.CancelButton.Image = global::TpIntegradorLibros.Windows.Properties.Resources.delete_24px;
-            this.CancelButton.Location = new System.Drawing.Point(223, 309);
+            this.CancelButton.Location = new System.Drawing.Point(229, 266);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(83, 61);
-            this.CancelButton.TabIndex = 10;
+            this.CancelButton.TabIndex = 7;
             this.CancelButton.Text = "Cancelar";
             this.CancelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.CancelButton.UseVisualStyleBackColor = true;
@@ -167,10 +172,10 @@ namespace TpIntegradorLibros.Windows
             // OKbutton
             // 
             this.OKbutton.Image = global::TpIntegradorLibros.Windows.Properties.Resources.save_24px;
-            this.OKbutton.Location = new System.Drawing.Point(106, 309);
+            this.OKbutton.Location = new System.Drawing.Point(112, 266);
             this.OKbutton.Name = "OKbutton";
             this.OKbutton.Size = new System.Drawing.Size(83, 61);
-            this.OKbutton.TabIndex = 10;
+            this.OKbutton.TabIndex = 6;
             this.OKbutton.Text = "OK";
             this.OKbutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.OKbutton.UseVisualStyleBackColor = true;
@@ -178,16 +183,21 @@ namespace TpIntegradorLibros.Windows
             // 
             // ISBNtb
             // 
-            this.ISBNtb.Location = new System.Drawing.Point(135, 209);
+            this.ISBNtb.Location = new System.Drawing.Point(140, 181);
+            this.ISBNtb.MaxLength = 13;
             this.ISBNtb.Name = "ISBNtb";
             this.ISBNtb.Size = new System.Drawing.Size(237, 20);
-            this.ISBNtb.TabIndex = 11;
+            this.ISBNtb.TabIndex = 4;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FrmLibroAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 394);
+            this.ClientSize = new System.Drawing.Size(434, 349);
             this.Controls.Add(this.ISBNtb);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OKbutton);
@@ -206,6 +216,7 @@ namespace TpIntegradorLibros.Windows
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " Agregar libro";
             ((System.ComponentModel.ISupportInitialize)(this.PaginasNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,5 +238,6 @@ namespace TpIntegradorLibros.Windows
         private System.Windows.Forms.Button OKbutton;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.TextBox ISBNtb;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

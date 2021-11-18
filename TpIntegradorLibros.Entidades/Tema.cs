@@ -9,6 +9,7 @@ namespace TpIntegradorLibros.Entidades
     public enum Tema
     {
         Policial,
+        Novela,
         Ciencia_Ficcion,
         Romance,
         Escolar,

@@ -34,7 +34,7 @@ namespace TpIntegradorLibros.Windows
                 EditorialCB.SelectedItem = libro.Editorial;
                 TemaCB.SelectedItem = libro.Tema;
                 PaginasNum.Value = libro.Paginas;
-                ISBNtb.Text = libro.ISBN;
+                ISBNtb.Text = libro.ISBN.ToString();
                 AutorTB.Text = libro.Autor;
 
             }
@@ -65,19 +65,34 @@ namespace TpIntegradorLibros.Windows
         private Libro libro;
         private void OKbutton_Click(object sender, EventArgs e)
         {
-            if (libro == null)
+            try
             {
-                libro = new Libro();
+                if (libro == null)
+                {
+                    libro = new Libro();
+                }
+
+                libro.NombreDelLibro = NombreLibroTB.Text;
+                libro.Editorial = (Editorial)EditorialCB.SelectedItem;
+                libro.Tema = (Tema)TemaCB.SelectedItem;
+                libro.Paginas = (int)PaginasNum.Value;
+                libro.ISBN = (long) long.Parse(ISBNtb.Text);
+                libro.Autor = AutorTB.Text;
+
+                DialogResult = DialogResult.OK;
+
+                if (RepositorioDeLibros.GetInstancia().Existe(libro))
+                {
+                    errorProvider1.SetError(ISBNtb, "Libro repetido!");
+                    return;
+                }
+                
             }
+            catch (Exception ex)
+            {
 
-            libro.NombreDelLibro = (string)NombreLibroTB.Text;
-            libro.Editorial = (Editorial)EditorialCB.SelectedItem;
-            libro.Tema = (Tema)TemaCB.SelectedItem;
-            libro.Paginas = (int)PaginasNum.Value;
-            libro.ISBN = (long)ISBNtb.Text;
-            libro.Autor = (string)AutorTB.Text;
-
-            DialogResult = DialogResult.OK;
+                MessageBox.Show(ex.Message, "Error");
+            }
         }
 
         public void SetLibro(Libro libro)

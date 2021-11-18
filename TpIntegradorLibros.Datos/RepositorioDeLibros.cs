@@ -25,7 +25,7 @@ namespace TpIntegradorLibros.Datos
 
             return _instancia;
         }
-        public RepositorioDeLibros()
+        private RepositorioDeLibros()
         {
             listaLibros = new List<Libro>();
             manejador = new ManejadorDeArchivo();
@@ -39,22 +39,24 @@ namespace TpIntegradorLibros.Datos
 
         public void Agregar(Libro libro)
         {
+            manejador.GuardarEnArchivo(libro);
             listaLibros.Add(libro);
         }
 
-        public void Editar(Libro l)
+        public void Editar(Libro libroOriginal, Libro libroModificado)
         {
-            manejador.EditarRegistroEnArchivo(l);
-            int index = listaLibros.IndexOf(l);
+            manejador.EditarRegistroEnArchivo(libroOriginal,libroModificado);
+            int index = listaLibros.IndexOf(libroOriginal);
             listaLibros.RemoveAt(index);
-            listaLibros.Insert(index, l);
+            listaLibros.Insert(index, libroModificado);
 
 
         }
 
-        public void Borrar(Libro libro)
+        public void Borrar(Libro l)
         {
-            listaLibros.Remove(libro);
+            manejador.BorrarRegistroEnArchivo(l);
+            listaLibros.Remove(l);
         }
 
         public bool Existe(Libro libro)
@@ -67,7 +69,24 @@ namespace TpIntegradorLibros.Datos
             return listaLibros.Count;
         }
 
+        public List<Libro> GetListaFiltradaPorTema(Tema tema)
+        {
+            return listaLibros.Where(l=>l.Tema==tema).ToList();
+        }
 
+        public List<Libro> GetListaFiltradaPorEditorial(Editorial editorial)
+        {
+            return listaLibros.Where(l=>l.Editorial==editorial).ToList();
+        }
 
+        public List<Libro> OrdenarAscPorPaginas()
+        {
+            return listaLibros.OrderBy(l=>l.Paginas).ToList();
+        }
+
+        public List<Libro> OrdenarDescPorPaginas()
+        {
+            return listaLibros.OrderByDescending(l=>l.Paginas).ToList();
+        }
     }
 }

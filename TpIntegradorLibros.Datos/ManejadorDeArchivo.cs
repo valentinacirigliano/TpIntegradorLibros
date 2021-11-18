@@ -13,27 +13,11 @@ namespace TpIntegradorLibros.Datos
         private readonly string _archivo = Environment.CurrentDirectory + @"\Libros.txt";
         private readonly string _archivobak = Environment.CurrentDirectory + @"\Libros.bak";
 
-        public void EditarRegistroEnArchivo(Libro libromodificado)
+        public ManejadorDeArchivo()
         {
-            StreamReader lector = new StreamReader(_archivo);
-            StreamWriter escritor = new StreamWriter(_archivobak);
-            while (!lector.EndOfStream)
-            {
-                var linea = lector.ReadLine();
-                var libroEnArchivo = ConstruirLibro(linea);
-                if (libroEnArchivo.Equals(libromodificado))
-                {
-                    linea = ConstruirLinea(libromodificado);
-                }
-                escritor.WriteLine(linea);
-            }
 
-            escritor.Close();
-            lector.Close();
-            File.Delete(_archivo);
-            File.Move(_archivobak, _archivo);
         }
-
+        
         public List<Libro> LeerDatosDelArchivo()
         {
             var lista = new List<Libro>();
@@ -43,13 +27,14 @@ namespace TpIntegradorLibros.Datos
                 while (!lector.EndOfStream)
                 {
                     var linea = lector.ReadLine();
-                    Libro libro = ConstruirLibro(linea);
+                    var libro = ConstruirLibro(linea);
                     lista.Add(libro);
                 }
-               
-            } return lista;
-        }
 
+                lector.Close();
+            }
+            return lista;   
+        }
 
         private Libro ConstruirLibro(string linea)
         {
@@ -60,9 +45,24 @@ namespace TpIntegradorLibros.Datos
                 Editorial = (Editorial)int.Parse(campos[1]),
                 Tema = (Tema)int.Parse(campos[2]),
                 Paginas = int.Parse(campos[3]),
-                ISBN = int.Parse(campos[4]),
+                ISBN = long.Parse(campos[4]),
                 Autor = campos[5]
             };
+        }
+        
+        public void Agregar(Libro libro)
+        {
+            StreamWriter escritor = new StreamWriter(_archivo, true);
+            var linea = ConstruirLinea(libro);
+            escritor.WriteLine(linea);
+            escritor.Close();
+        }
+
+        private string ConstruirLinea(Libro libro)
+        {
+            return $" {libro.NombreDelLibro} | {libro.Editorial.GetHashCode()} | " +
+                    $" {libro.Tema.GetHashCode()} | {libro.Paginas} | " +
+                    $" {libro.ISBN} | {libro.Autor} ";
         }
 
         public void BorrarRegistroEnArchivo(Libro libro)
@@ -84,6 +84,27 @@ namespace TpIntegradorLibros.Datos
             File.Move(_archivobak, _archivo);
         }
 
+        public void EditarRegistroEnArchivo(Libro libroOriginal, Libro libroModificado)
+        {
+            StreamReader lector = new StreamReader(_archivo);
+            StreamWriter escritor = new StreamWriter(_archivobak);
+            while (!lector.EndOfStream)
+            {
+                var linea = lector.ReadLine();
+                Libro libroEnArchivo = ConstruirLibro(linea);
+                if (libroEnArchivo.Equals(libroOriginal))
+                {
+                    linea = ConstruirLinea(libroModificado);
+                }
+                escritor.WriteLine(linea);
+            }
+
+            escritor.Close();
+            lector.Close();
+            File.Delete(_archivo);
+            File.Move(_archivobak, _archivo);
+        }
+
         public void GuardarEnArchivo(Libro libro)
         {
             StreamWriter escritor = new StreamWriter(_archivo, true);
@@ -93,12 +114,6 @@ namespace TpIntegradorLibros.Datos
         }
 
 
-        private string ConstruirLinea(Libro libro)
-        {
-            return $" {libro.NombreDelLibro} | {libro.Editorial.GetHashCode()} | " +
-                    $" {libro.Tema.GetHashCode()} | {libro.Paginas} | " +
-                    $" {libro.ISBN} | {libro.Autor} ";
-        }
 
     }
 }

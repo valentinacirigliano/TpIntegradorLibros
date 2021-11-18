@@ -12,7 +12,7 @@ namespace TpIntegradorLibros.Entidades
         public Editorial Editorial { get; set; }
         public Tema Tema { get; set; }
         public int Paginas { get; set; }
-        public int ISBN { get; set; }
+        public long ISBN { get; set; }
         public string Autor { get; set; }
 
         public object Clone()
